@@ -115,5 +115,8 @@ $app->router->group([
 
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(App\Providers\CloudinaryServiceProvider::class);
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class,
+]);
 
 return $app;
