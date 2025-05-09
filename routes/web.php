@@ -2,7 +2,7 @@
 
 
 
-$router->group(['middleware' => 'auth'], function () use ($router) {
+$router->group(['middleware' => 'auth:api'], function () use ($router) {
     
     $router->get('/', function () use ($router) {
         return $router->app->version();
