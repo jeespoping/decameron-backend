@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('descriptions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('hotel_id');
+            $table->integer('amount');
+            $table->enum('type', ['ESTANDAR', 'JUNIOR', 'SUITE']);
+            $table->enum('accommodation', ['SENCILLA', 'DOBLE', 'TRIPLE', 'CUADRUPLE']);
+
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

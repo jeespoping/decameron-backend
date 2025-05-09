@@ -152,4 +152,12 @@ class HotelController extends Controller
             ]);
         }
     }
+
+    public function rooms($id){
+        $hotel = Hotel::where('id', $id)->first();
+
+        $rooms = $hotel->descriptions()->get();
+
+        return $rooms;
+    }
 }

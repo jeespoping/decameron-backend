@@ -22,10 +22,15 @@ $router->group(['middleware' => 'auth:api'], function () use ($router) {
     $router->post('/hotel', 'HotelController@store');
     $router->put('/hotel/{id}', 'HotelController@update');
     $router->delete('/hotel/{id}', 'HotelController@delete');
+
+    $router->post('/habitacion', 'DescriptionController@store');
+    $router->delete('/habitacion/{id}', 'DescriptionController@delete');
 });
 
 $router->get('/hotel', 'HotelController@index');
 $router->get('/hotel/{id}', 'HotelController@show');
+
+$router->get('/hotel/room/{id}', 'HotelController@rooms');
 
 $router->post('/register', 'AuthController@register');
 $router->post('/login', 'AuthController@login');
