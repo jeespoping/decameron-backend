@@ -29,9 +29,9 @@ class Description extends Model
     }
 
     public function validateaccommodation($type, $accommodation){
-        if($type === "ESTANDAR" and ($accommodation == "SENCILLA" || $accommodation == "DOBLE")) return ["msg" => "la Acomodacion debe ser Sencilla o Doble", "res" => false];
-        elseif ($type === "JUNIOR" and ($accommodation == "TRIPLE" || $accommodation == "CUADRUPLE")) return ["msg" => "la Acomodacion debe ser Triple o Cuadruple", "res" => false];
-        elseif ($type === "SUITE" and ($accommodation == "SENCILLA" || $accommodation == "DOBLE" || $accommodation == "TRIPLE")) return ["msg" => "la Acomodacion debe ser Sencilla, Doble o Triple", "res" => false];
+        if($type === "ESTANDAR" and ($accommodation !== "SENCILLA" and $accommodation !== "DOBLE")) return ["msg" => "la Acomodacion debe ser Sencilla o Doble", "res" => false];
+        elseif ($type === "JUNIOR" and ($accommodation !== "TRIPLE" and $accommodation !== "CUADRUPLE")) return ["msg" => "la Acomodacion debe ser Triple o Cuadruple", "res" => false];
+        elseif ($type === "SUITE" and ($accommodation !== "SENCILLA" and $accommodation !== "DOBLE" and $accommodation !== "TRIPLE")) return ["msg" => "la Acomodacion debe ser Sencilla, Doble o Triple", "res" => false];
         return ["msg" => "datos Correctamente", "res" => true];
     }
 }

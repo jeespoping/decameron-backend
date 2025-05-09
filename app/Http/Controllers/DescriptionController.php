@@ -21,7 +21,7 @@ class DescriptionController extends Controller
 
         $diff = $description->diffValidatedroom($request->amount,$request->hotel_id);
         $validateH = $description->validateRoom($request->accommodation, $request->type, $request->hotel_id);
-        $validatA = $description->validateaccommodation($request->accommodation, $request->type);
+        $validatA = $description->validateaccommodation($request->type, $request->accommodation );
 
         if($diff["diff"] < 0){
             return response()->json([
