@@ -56,7 +56,7 @@ class HotelController extends Controller
     }
 
     public function index(){
-        $hotel = Hotel::get();
+        $hotel = Hotel::paginate();
 
         if ($hotel){
             return response()->json([
@@ -117,7 +117,7 @@ class HotelController extends Controller
             "nit" => $request->nit,
             "room" => $request->room,
             'image' => $data['image'] ?? $request->image,
-            'public_id' => $data['public_id'] ?? $request->public_id,
+            'public_id' => $data['public_id'] ?? $hotel->public_id,
         ]);
 
         if ($hotel){
