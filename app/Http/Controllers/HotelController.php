@@ -39,6 +39,7 @@ class HotelController extends Controller
                 "nit" => $request->nit,
                 "room" => $request->room,
                 'image' => $result['url'],
+                'public_id' => $result['public_id']
             ]);
 
            return response()->json([
@@ -52,7 +53,103 @@ class HotelController extends Controller
                 'res' => false,
             ]);
         }
+    }
 
+    public function index(){
+        $hotel = Hotel::get();
+
+        if ($hotel){
+            return response()->json([
+                'message' => 'Se encontro con exito',
+                'data' => $hotel,
+                'res' => true
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'No se encontro con exito',
+                'res' => false
+            ]);
+        }
+    }
+
+     public function show($id){
+
+        $hotel = Hotel::where('id', $id)->firstOrFail();
+
+        if ($hotel){
+            return response()->json([
+                'message' => 'Se encontro con exito',
+                'data' => $hotel,
+                'res' => true
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'No se encontro con exito',
+                'res' => false
+            ]);
+        }
+    }
+
+    public function update(Request $request,$id){
+
+        $hotel = Hotel::findOrFail($id);
+
+        $data = [];
+
+        if ($request->hasFile('image')) {
+            
+            $this->cloudinary->uploadApi()->destroy($hotel->public_id);
+
+            
+            $uploadedFile = $request->file('image');
+            $result = $this->cloudinary->uploadApi()->upload($uploadedFile->getRealPath(), [
+                'folder' => 'hotel',
+            ]);
+
+            $data['image'] = $result['url'];
+            $data['public_id'] = $result['public_id'];
+        }
         
+        $hotel->update([
+            "name" => $request->name,
+            "address" => $request->address,
+            "city" => $request->city,
+            "nit" => $request->nit,
+            "room" => $request->room,
+            'image' => $data['image'] ?? $request->image,
+            'public_id' => $data['public_id'] ?? $request->public_id,
+        ]);
+
+        if ($hotel){
+            return response()->json([
+                'message' => 'Se editaron los datos con exito',
+                'data' => $hotel,
+                'res' => true
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'No se pudieron actualizar los datos',
+                'res' => false
+            ]);
+        }
+    }
+
+    public function delete($id){
+
+        $hotel = Hotel::where('id', $id)->firstOrFail();
+        $hotel->delete();
+
+        if ($hotel){
+            return response()->json([
+                'message' => 'Se eliminaron los datos exitosamente',
+                'data' => $hotel,
+                'res' => true
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'No se pudieron eliminar los datos',
+                'res' => false
+            ]);
+        }
     }
 }

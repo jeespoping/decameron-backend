@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nit')->unique();
             $table->string('room');
             $table->string('image'); 
+            $table->string('public_id'); 
             $table->timestamps();
         });
     }
