@@ -114,5 +114,6 @@ $app->router->group([
 });
 
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(App\Providers\CloudinaryServiceProvider::class);
 
 return $app;
