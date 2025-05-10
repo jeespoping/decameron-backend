@@ -22,8 +22,9 @@ php ^8.0
         * CLOUDINARY_CLOUD_NAME=
 8. Ejecuta `composer install`
 9. Ejecutar `php artisan key:generate`
-10. Ejecutar el backup de PostgreSQL que está ubicado en la carpeta backup, el archivo se llama decameron 
-13. Abre la aplicación en el postman o insomnia
-14. Importa los end point, que se encuentra en la carpeta postman el archivo llamado Hotel.postman.json
+10. Ejecutar el backup de PostgreSQL que está ubicado en la carpeta backup, el archivo se llama decameron
+11. Ejecutar `php artisan serve`
+12. Abre la aplicación en el postman o insomnia
+13. Importa los end point, que se encuentra en la carpeta postman el archivo llamado Hotel.postman.json
     * Email: jeespoping@gmail.com
     * Password: Nik.2000
