@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "e5a2c47d-43d0-4894-956c-b864832be58d",
+		"name": "Hotel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12460112"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"TOKEN\", jsonData[\"token\"]);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"jeespoping@gmail.com\",\r\n    \"password\" : \"Nik.2000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/login",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validar token",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/checktoken",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"checktoken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear hotel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Decameron Cartagena",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Carrera 21 A4 #29F3-8",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Cartagena",
+							"type": "text"
+						},
+						{
+							"key": "nit",
+							"value": "12345678-9",
+							"type": "text"
+						},
+						{
+							"key": "room",
+							"value": "42",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Lopez/Desktop/5a31cf61-0f80-47b4-aacc-20a3ba3956aa-medium.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/hotel",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"hotel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver hotel",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/hotel/3",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"hotel",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Hotel",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "carro",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/hotel/3?_method=PUT",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"hotel",
+						"3"
+					],
+					"query": [
+						{
+							"key": "_method",
+							"value": "PUT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar hotel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/hotel/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"hotel",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver hoteles",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_URL}}/hotel",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"hotel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear habitacion",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"hotel_id\" : \"1\",\r\n    \"amount\"   :  \"42\",\r\n    \"type\"     :    \"ESTANDAR\",\r\n    \"accommodation\" : \"DOBLE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/habitacion",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"habitacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver cuartos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/hotel/room/3",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"hotel",
+						"room",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar cuartos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/habitacion/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"habitacion",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jesus\",\r\n    \"email\":\"jeespoping@gmail.com\",\r\n    \"password\":\"Nik.2000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/register",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "home",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3aPHkE2PuGq9XRZjqC62HVJL0ha8xHuWqcuLbgyhUD1E449UMBAEcAIH1Xpy1Kx43GZ5g8d3KosyCDmWGUtK3UfLoONMLeke8L5Mg2qB0CM0OL7zbyOIpstJvxSHOiKB8RHtwhntejzdcXXtJO23Zo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{API_URL}}",
+					"host": [
+						"{{API_URL}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
