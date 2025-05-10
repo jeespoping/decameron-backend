@@ -1,26 +1,29 @@
-# Lumen PHP Framework
+# Guía para instalar el proyecto
+## Este proyecto fue desarrollado en Lumen
+# Versión de PHP utilizada
+php ^8.0
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
-
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
-
-> **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
-
-## Official Documentation
-
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Instalación
+1. Descarga el repositorio
+2. Descromprime la carpeta dentro del directorio donde pueda correr php
+3. Renombra la carpeta (Opcional) 
+4. Entra a la carpeta desde la terminal `cd directorio/de/la/carpeta`
+5. Copia el contenido del archivo `.env.example` a un nuevo archivo llamado `.env`
+    * Si estás en Liunx o Mac puedes ejecutar el comando: `cp .env.example .env`
+6. Crea una base de datos para el proyecto
+7. Modifica las variables de conexión del nuevo archivo `.env` 
+    * Define los datos de conexión 
+        * DB_DATABASE=
+        * DB_USERNAME=
+        * DB_PASSWORD=
+    * Define la configuracion de cloudinary
+        * CLOUDINARY_API_KEY=
+        * CLOUDINARY_API_SECRET=
+        * CLOUDINARY_CLOUD_NAME=
+8. Ejecuta `composer install`
+9. Ejecutar `php artisan key:generate`
+10. Ejecutar el backup de PostgreSQL que está ubicado en la carpeta backup, el archivo se llama decameron 
+13. Abre la aplicación en el postman o insomnia
+14. Importa los end point, que se encuentra en la carpeta postman el archivo llamado Hotel.postman.json
+    * Email: jeespoping@gmail.com
+    * Password: Nik.2000
